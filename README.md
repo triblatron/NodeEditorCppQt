@@ -19,3 +19,10 @@ Supported operations are:
 * instantiate a template
 * delete an instance
 * delete a template
+* update a template
+
+A template is a graph that can be instantiated in another graph as a child.  The boundary nodes become the inputs and outputs of the template and are wired up to the selection.  An instantiated template may share its nodes with other instantiations to get changes to the original.  This might cause difficulties if the structure of the template changes.  It might therefore be sensible to copy nodes by default.  This will make instantiation independent of the original.  An update template operation might explicitly change the structure of an instance.
+
+These operations constitute the interface for the node editor that must be implemented by both the node editor and any stub used by gRPC or similar communication layers.
+
+Some are already implemented but we have to decide where the implementation belongs.  It is currently in the backend and will be factored out into the library when it is created.
